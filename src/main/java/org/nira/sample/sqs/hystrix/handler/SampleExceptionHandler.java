@@ -18,7 +18,8 @@ import static com.netflix.hystrix.exception.HystrixRuntimeException.FailureType.
 public class SampleExceptionHandler {
 
   @ExceptionHandler({ HystrixRuntimeException.class })
-  public ResponseEntity<SampleResponse> handleHystrixRuntimeException(HystrixRuntimeException exception, HttpServletRequest request) {
+//  public ResponseEntity<SampleResponse> handleHystrixRuntimeException(HystrixRuntimeException exception) {
+  public void handleHystrixRuntimeException(HystrixRuntimeException exception) {
     String newMsg;
     if (exception.getFailureType() == TIMEOUT) {
       newMsg = "Timeout Error: ".concat(exception.getMessage());
@@ -29,7 +30,12 @@ public class SampleExceptionHandler {
         newMsg = "Server Error: ".concat(exception.getMessage());
       }
     }
-    return new ResponseEntity<>(new SampleResponse(newMsg), HttpStatus.INTERNAL_SERVER_ERROR);
+    log.error("Hystrix Exception: {}", newMsg);
+//    return new ResponseEntity<>(new SampleResponse(newMsg), HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
+  @ExceptionHandler({ SampleException.class })
+  public void handleSampleException(SampleException exception) {
+    log.error("Sample Exception: {}", exception.getMessage());
+  }
 }

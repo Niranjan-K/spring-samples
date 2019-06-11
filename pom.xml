@@ -20,6 +20,7 @@
         <version.spring.cloud>2.1.1.RELEASE</version.spring.cloud>
         <version.spring.boot>2.1.2.RELEASE</version.spring.boot>
         <version.lombok>1.18.4</version.lombok>
+        <version.aws.sdk>1.11.536</version.aws.sdk>
     </properties>
 
 
@@ -41,6 +42,28 @@
             <artifactId>lombok</artifactId>
             <version>${version.lombok}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-sqs</artifactId>
+            <version>${version.aws.sdk}</version>
+        </dependency>
+
+        <!-- implementation('com.amazonaws:aws-java-sdk-s3:1.11.536')-->
+
+<!-- -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-aws</artifactId>
+            <version>${version.spring.cloud}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-aws-messaging</artifactId>
+            <version>${version.spring.cloud}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
